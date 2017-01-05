@@ -1,21 +1,46 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+Bike = function() {
+    this.serial = serial;
+    this.title = title;
+};
+
+Bike.prototype.getBikes = function(city) {
+  $.get('https://bikeindex.org:443/api/v3/search?page=1&per_page=25&location=' + city + '&distance=25&stolenness=proximity').then(function(response) {
+    $('.showBikes').text(response.bikes);
+  })
+    .fail(function(error) {
+      $('.$showBikes').text(error.responseJSON.message);
+  });
+};
+
+
+
+
+exports.bikeModule = Bike;
+
+},{}],2:[function(require,module,exports){
+
+var Bike = require('./../js/bike.js').bikeModule;
 
 $(document).ready(function() {
-  $('#answer').hide();
+  var bikeObject = new Bike();
+
   $('#bikeLocation').click(function() {
+    event.preventDefault();
+    $('.showBikes').empty();
+
     var city = $('#location').val();
     $('#location').val("");
-    $.get('https://bikeindex.org:443/api/v3/search?page=1&per_page=25&location=' + city + '&distance=25&stolenness=proximity').then(function(response) {
-      $('.showBikes').text(response.bikes.forEach(function(bike) {
-        $('.showBikes').append("<li>" + bike.title + "</li>");
-        console.log(response);
-      })
-      .fail(function(error) {
-        $('.$showBikes').text(error.responseJSON.message);
-      }));
+
+    var result = bikeObject.getBikes(city);
+
+    result.bikes.forEach(function(bike) {
+      $('.showBikes').append("<li>" + bike.title + " " + bike.serial + "</li>");
+      console.log(response);
     });
+
     $('#answer').show();
   });
 });
 
-},{}]},{},[1]);
+},{"./../js/bike.js":1}]},{},[2]);
