@@ -2,8 +2,9 @@
 var Bike = require('./../js/bike.js').bikeModule;
 
 $(document).ready(function() {
-  var bikeObject = new Bike();
-
+  var currentBikeObject = new Bike();
+  $('.showBikes').hide();
+  $('#question').hide();
   $('#bikeLocation').click(function() {
     event.preventDefault();
     $('.showBikes').empty();
@@ -11,13 +12,9 @@ $(document).ready(function() {
     var city = $('#location').val();
     $('#location').val("");
 
-    var result = bikeObject.getBikes(city);
+    currentBikeObject.getBikes(city);
 
-    result.bikes.forEach(function(bike) {
-      $('.showBikes').append("<li>" + bike.title + " " + bike.serial + "</li>");
-      console.log(response);
-    });
-
-    $('#answer').show();
+    $('.showBikes').show();
+    $('#question').show();
   });
 });
