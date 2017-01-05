@@ -1,5 +1,6 @@
 
 $(document).ready(function() {
+  $('#answer').hide();
   $('#bikeLocation').click(function() {
     var city = $('#location').val();
     $('#location').val("");
@@ -7,7 +8,11 @@ $(document).ready(function() {
       $('.showBikes').text(response.bikes.forEach(function(bike) {
         $('.showBikes').append("<li>" + bike.title + "</li>");
         console.log(response);
+      })
+      .fail(function(error) {
+        $('.$showBikes').text(error.responseJSON.message);
       }));
     });
+    $('#answer').show();
   });
 });
