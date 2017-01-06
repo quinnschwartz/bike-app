@@ -5,14 +5,17 @@ $(document).ready(function() {
   var currentBikeObject = new Bike();
   $('.showBikes').hide();
   $('#question').hide();
-  $('#bikeLocation').click(function() {
+  $('#findBike').click(function() {
     event.preventDefault();
     $('.showBikes').empty();
 
-    var city = $('#location').val();
+    var location = $('#location').val();
+    var color = $('#color').val();
     $('#location').val("");
+    $('#color').val("");
 
-    currentBikeObject.getBikes(city);
+    currentBikeObject.getBikes(location);
+    currentBikeObject.getColoredBikes(location, color);
 
     $('.showBikes').show();
     $('#question').show();

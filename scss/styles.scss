@@ -6,3 +6,15 @@
 // .showBikes {
 //   display: none !important;
 // }
+
+ul {
+  li {
+    font-size: 20px;
+    list-style: none;
+    margin-bottom: 15px;
+    span {
+      color: red;
+      font-weight: bold;
+    }
+  }
+}
