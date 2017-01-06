@@ -10,12 +10,12 @@ $(document).ready(function() {
     $('.showBikes').empty();
 
     var location = $('#location').val();
-    var color = $('#color').val();
+    // var color = $('#color').val();
     $('#location').val("");
-    $('#color').val("");
+    // $('#color').val("");
 
     currentBikeObject.getBikes(location);
-    currentBikeObject.getColoredBikes(location, color);
+    // currentBikeObject.getColoredBikes(location, color);
 
     $('.showBikes').show();
     $('#question').show();

@@ -1,6 +1,6 @@
-Bike = function(location, color) {
+Bike = function(location) {
     this.location = location;
-    this.color = color;
+    // this.color = color;
 };
 
 Bike.prototype.getBikes = function(location) {
@@ -14,7 +14,7 @@ Bike.prototype.getBikes = function(location) {
       $('.$showBikes').text(error.responseJSON.message);
   });
 };
-
+// 
 // Bike.prototype.getColoredBikes = function(location, color) {
 //   $.get('https://bikeindex.org:443/api/v3/search?page=1&per_page=25&location=' + location + '&distance=25&stolenness=proximity').then(function(response) {
 //     var color = this.color;
